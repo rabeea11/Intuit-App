@@ -1,22 +1,18 @@
 package com.example.IntuitApp.controllers;
 
 import com.example.IntuitApp.Interfaces.IPaymentController;
-import com.example.IntuitApp.kafka.Producer;
 import com.example.IntuitApp.model.Constants;
 import com.example.IntuitApp.model.Payment;
+import com.example.IntuitApp.model.PaymentDTO;
 import com.example.IntuitApp.services.PaymentService;
-import com.example.IntuitApp.valdiators.ValidateAmount;
-import com.example.IntuitApp.valdiators.ValidateCurrency;
-import com.example.IntuitApp.valdiators.ValidatePayment;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
+import java.util.Optional;
 
 @Slf4j
 @RestController
@@ -48,6 +44,24 @@ public class PaymentController implements IPaymentController {
             log.error(Constants.INVALID_JSON);
         }
         return new ResponseEntity<>(Constants.SUCCESSFULLY_SENT, HttpStatus.OK);
+    }
+
+    @GetMapping(value = "payment/{id}")
+    public ResponseEntity<Optional<PaymentDTO>> getPaymentById(@PathVariable String id){
+        if (paymentService.getPaymentById(id)!= null) {
+            Optional<PaymentDTO> paymentDTO=paymentService.getPaymentById(id);
+            log.info("Get Payment from DB: {}",paymentDTO);
+            return new ResponseEntity<>(paymentDTO, HttpStatus.OK);
+        }
+        else {
+            log.error("Payment with the provided ID  {} Does not Exist in DB", id);
+            return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @GetMapping(value = "allPayments")
+    public ResponseEntity<ArrayList<PaymentDTO>> getAllPayments(){
+        return new ResponseEntity<>(paymentService.getAllPaymentsFromDb(),HttpStatus.OK);
     }
 
 }
