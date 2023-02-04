@@ -1,10 +1,7 @@
 package com.example.IntuitApp.kafka;
 
 import com.example.IntuitApp.model.Payment;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Component;
@@ -15,16 +12,16 @@ public class Producer {
 
     @Value("${spring.kafka.topic.name}")
     private String orderTopic;
-    private final KafkaTemplate<String, String> kafkaTemplate;
 
-    public Producer(KafkaTemplate<String, String> kafkaTemplate) {
+    private final KafkaTemplate<String,Payment> kafkaTemplate;
+
+    public Producer(KafkaTemplate<String, Payment> kafkaTemplate) {
         this.kafkaTemplate = kafkaTemplate;
-
     }
 
-    public void sendMessage(String message) {
-        kafkaTemplate.send(orderTopic, message);
+    public void sendMessage(Payment payment) {
+        kafkaTemplate.send(orderTopic, payment);
 
-        log.info("Message Sent : {}", message);
+        log.info("Message Sent : {}", payment);
     }
 }

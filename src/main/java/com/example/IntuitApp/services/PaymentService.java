@@ -12,6 +12,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.nio.charset.StandardCharsets;
+
 @Service
 @Slf4j
 public class PaymentService implements IPaymentService {
@@ -31,8 +33,8 @@ public class PaymentService implements IPaymentService {
     public boolean sendPayment(Payment payment) {
         log.info("Sending event by Kafka");
         try {
-            String jsonMsg = gson.toJson(payment);
-            producer.sendMessage(jsonMsg);
+//            String jsonMsg = gson.toJson(payment);
+            producer.sendMessage(payment);
         }catch (JsonParseException ex){
             return false;
         }

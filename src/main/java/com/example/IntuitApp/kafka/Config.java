@@ -27,7 +27,7 @@ import java.util.Map;
         }
 
         @Bean
-        public ProducerFactory<String, String> producerFactory() {
+        public ProducerFactory<String, Payment> producerFactory() {
             Map<String, Object> properties = kafkaProperties.buildProducerProperties();
             properties.put(
                     ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG,
@@ -39,7 +39,7 @@ import java.util.Map;
         }
 
         @Bean
-        public KafkaTemplate<String, String> kafkaTemplate() {
+        public KafkaTemplate<String , Payment> kafkaTemplate() {
             return new KafkaTemplate<>(producerFactory());
         }
 
