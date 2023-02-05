@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 public class Producer {
 
     @Value("${spring.kafka.topic.name}")
-    private String orderTopic;
+    private String topic;
 
     private final KafkaTemplate<String,Payment> kafkaTemplate;
 
@@ -20,7 +20,7 @@ public class Producer {
     }
 
     public void sendMessage(Payment payment) {
-        kafkaTemplate.send(orderTopic, payment);
+        kafkaTemplate.send(topic, payment);
 
         log.info("Message Sent : {}", payment);
     }

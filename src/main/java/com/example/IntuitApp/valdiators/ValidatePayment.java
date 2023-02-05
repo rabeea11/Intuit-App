@@ -10,8 +10,12 @@ public class ValidatePayment implements Validator {
 
     @Override
     public boolean isValid(Payment payment) {
-        if(payment.getPaymentMethodId().isEmpty() || payment.getCurrency().isEmpty() || payment.getUserId().isEmpty() || payment.getPayeeId().isEmpty())
+        try {
+            if(payment.getPaymentMethodId().isEmpty() || payment.getCurrency().isEmpty() || payment.getUserId().isEmpty() || payment.getPayeeId().isEmpty())
+                return false;
+        }catch (Exception e){
             return false;
+        }
         return true;
     }
 }

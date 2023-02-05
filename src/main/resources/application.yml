@@ -2,9 +2,15 @@ server:
   port: 8081
 spring:
   kafka:
+    bootstrap-servers: ${kafka_bootstrap_servers:localhost:9092}
     consumer:
       group-id: group-1
       auto-offset-reset: earliest
       bootstrap-servers: localhost:9092
     topic:
-      name: test
+      name: payments
+    producer:
+      client-id: example
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+      retries: 2

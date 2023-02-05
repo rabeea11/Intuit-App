@@ -8,11 +8,9 @@ import com.example.IntuitApp.model.PaymentDTO;
 import com.example.IntuitApp.valdiators.ValidateAmount;
 import com.example.IntuitApp.valdiators.ValidateCurrency;
 import com.example.IntuitApp.valdiators.ValidatePayment;
-import com.google.gson.Gson;
-import com.google.gson.JsonParseException;
+
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -23,25 +21,20 @@ import java.util.Optional;
 public class PaymentService implements IPaymentService {
 
     @Autowired
-    Producer producer;
+    private Producer producer;
+    private ValidatePayment validatePayment = new ValidatePayment();
+    private ValidateAmount validateAmount = new ValidateAmount();
+    private ValidateCurrency validateCurrency= new ValidateCurrency();
+
     @Autowired
-    ValidatePayment validatePayment;
-    @Autowired
-    ValidateAmount validateAmount;
-    @Autowired
-    ValidateCurrency validateCurrency;
-    @Autowired
-    private Gson gson;
-    @Autowired
-    IPaymentDAO paymentDAO;
+    private IPaymentDAO paymentDAO;
 
     @Override
     public boolean sendPayment(Payment payment) {
         log.info("Sending event by Kafka");
         try {
-//            String jsonMsg = gson.toJson(payment);
             producer.sendMessage(payment);
-        }catch (JsonParseException ex){
+        }catch (Exception ex){
             return false;
         }
         return true;
