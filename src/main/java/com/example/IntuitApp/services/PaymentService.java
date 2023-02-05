@@ -68,4 +68,15 @@ public class PaymentService implements IPaymentService {
         return (ArrayList<PaymentDTO>) paymentDAO.findAll();
     }
 
+    @Override
+    public void deletePaymentById(String id){
+        log.info("Delete Payment with Id : {} ",id);
+        paymentDAO.deleteById(id);
+    }
+
+    @Override
+    public void deleteAll(){
+        log.info("Delete All Payments from DB");
+        paymentDAO.deleteAll();
+    }
 }

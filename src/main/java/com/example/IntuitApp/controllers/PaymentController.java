@@ -64,4 +64,14 @@ public class PaymentController implements IPaymentController {
         return new ResponseEntity<>(paymentService.getAllPaymentsFromDb(),HttpStatus.OK);
     }
 
+    @DeleteMapping(value = "deleteAllPayments")
+    public void deletePayments(){
+        paymentService.deleteAll();
+    }
+
+    @DeleteMapping(value = "deletePayment/{id}")
+    public void deletePayment(@PathVariable String id){
+        paymentService.deletePaymentById(id);
+    }
+
 }

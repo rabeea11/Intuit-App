@@ -16,6 +16,7 @@ public interface IPaymentService {
     boolean isValidAmount(Payment payment);
 
     Optional<PaymentDTO> getPaymentById(String id);
-
+    void deletePaymentById(String id);
+    void deleteAll();
     ArrayList<PaymentDTO> getAllPaymentsFromDb();
 }
