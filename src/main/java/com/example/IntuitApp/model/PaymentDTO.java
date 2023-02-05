@@ -9,8 +9,7 @@ import javax.persistence.GenerationType;
 import java.io.Serializable;
 
 @Data
-@Table(name="paymentdto")
-
+@Table(name="payments")
 public class PaymentDTO implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
