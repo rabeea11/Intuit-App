@@ -1,7 +1,9 @@
 package com.example.IntuitApp.Interfaces;
 
+import com.example.IntuitApp.model.Payee;
 import com.example.IntuitApp.model.Payment;
 import com.example.IntuitApp.model.PaymentDTO;
+import com.example.IntuitApp.model.PaymentMethod;
 import org.springframework.http.ResponseEntity;
 
 import java.util.ArrayList;
@@ -19,6 +21,6 @@ public interface IPaymentService {
     void deletePaymentById(String id);
     void deleteAll();
     ArrayList<PaymentDTO> getAllPaymentsFromDb();
-    ArrayList<String> getAllPayeesFromDb();
-    ArrayList<String> getAllPaymentMethodsFromDb();
+    ArrayList<Payee> getAllPayeesFromDb();
+    ArrayList<PaymentMethod> getAllPaymentMethodsFromDb();
     }

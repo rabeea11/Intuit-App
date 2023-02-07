@@ -1,9 +1,7 @@
 package com.example.IntuitApp.controllers;
 
 import com.example.IntuitApp.Interfaces.IPaymentController;
-import com.example.IntuitApp.model.Constants;
-import com.example.IntuitApp.model.Payment;
-import com.example.IntuitApp.model.PaymentDTO;
+import com.example.IntuitApp.model.*;
 import com.example.IntuitApp.services.PaymentService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -60,12 +58,12 @@ public class PaymentController implements IPaymentController {
     }
 
     @GetMapping(value = "payees")
-    public ResponseEntity<ArrayList<String>> getAllPayees(){
+    public ResponseEntity<ArrayList<Payee>> getAllPayees(){
        return  new ResponseEntity<>(paymentService.getAllPayeesFromDb(),HttpStatus.OK);
     }
 
     @GetMapping(value = "paymentMethods")
-    public ResponseEntity<ArrayList<String>> getAllMethodsIds(){
+    public ResponseEntity<ArrayList<PaymentMethod>> getAllMethodsIds(){
         return  new ResponseEntity<>(paymentService.getAllPaymentMethodsFromDb(),HttpStatus.OK);
     }
 

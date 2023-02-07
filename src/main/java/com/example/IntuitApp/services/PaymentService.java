@@ -3,8 +3,10 @@ package com.example.IntuitApp.services;
 import com.example.IntuitApp.Interfaces.IPaymentDAO;
 import com.example.IntuitApp.Interfaces.IPaymentService;
 import com.example.IntuitApp.kafka.Producer;
+import com.example.IntuitApp.model.Payee;
 import com.example.IntuitApp.model.Payment;
 import com.example.IntuitApp.model.PaymentDTO;
+import com.example.IntuitApp.model.PaymentMethod;
 import com.example.IntuitApp.valdiators.ValidateAmount;
 import com.example.IntuitApp.valdiators.ValidateCurrency;
 import com.example.IntuitApp.valdiators.ValidatePayment;
@@ -70,21 +72,29 @@ public class PaymentService implements IPaymentService {
     }
 
     @Override
-    public ArrayList<String> getAllPaymentMethodsFromDb() {
-        ArrayList<String> methods = new ArrayList<>();
+    public ArrayList<PaymentMethod> getAllPaymentMethodsFromDb() {
+        ArrayList<PaymentMethod> methods = new ArrayList<>();
         for(PaymentDTO payment: paymentDAO.findAll()){
-            methods.add(payment.getPaymentmethodid());
+            methods.add(getPaymentMethodById(payment.getPaymentmethodid()));
         }
         return methods;
     }
 
+    private PaymentMethod getPaymentMethodById(String methodId) {
+        return new PaymentMethod(methodId,"Visa Card");
+    }
+
     @Override
-    public ArrayList<String> getAllPayeesFromDb() {
-        ArrayList<String> methods = new ArrayList<>();
+    public ArrayList<Payee> getAllPayeesFromDb() {
+        ArrayList<Payee> methods = new ArrayList<>();
         for(PaymentDTO payment: paymentDAO.findAll()){
-            methods.add(payment.getPayeeid());
+            methods.add(getPayeeById(payment.getPayeeid()));
         }
         return methods;
+    }
+
+    private Payee getPayeeById(String payeeid) {
+        return new Payee(payeeid,"Rabia", "Ashqar", "rabia.ash@gmail.com");
     }
 
 
