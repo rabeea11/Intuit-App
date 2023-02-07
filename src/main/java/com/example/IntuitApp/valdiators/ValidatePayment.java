@@ -2,10 +2,9 @@ package com.example.IntuitApp.valdiators;
 
 import com.example.IntuitApp.Interfaces.Validator;
 import com.example.IntuitApp.model.Payment;
-import org.springframework.stereotype.Service;
-import org.springframework.util.StringUtils;
+import org.springframework.stereotype.Component;
 
-@Service
+@Component
 public class ValidatePayment implements Validator {
 
     @Override

@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -67,6 +68,25 @@ public class PaymentService implements IPaymentService {
     public ArrayList<PaymentDTO> getAllPaymentsFromDb() {
         return (ArrayList<PaymentDTO>) paymentDAO.findAll();
     }
+
+    @Override
+    public ArrayList<String> getAllPaymentMethodsFromDb() {
+        ArrayList<String> methods = new ArrayList<>();
+        for(PaymentDTO payment: paymentDAO.findAll()){
+            methods.add(payment.getPaymentmethodid());
+        }
+        return methods;
+    }
+
+    @Override
+    public ArrayList<String> getAllPayeesFromDb() {
+        ArrayList<String> methods = new ArrayList<>();
+        for(PaymentDTO payment: paymentDAO.findAll()){
+            methods.add(payment.getPayeeid());
+        }
+        return methods;
+    }
+
 
     @Override
     public void deletePaymentById(String id){

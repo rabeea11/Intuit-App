@@ -3,11 +3,9 @@ package com.example.IntuitApp.valdiators;
 import com.example.IntuitApp.Interfaces.Validator;
 import com.example.IntuitApp.model.Currency;
 import com.example.IntuitApp.model.Payment;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
-import java.util.Arrays;
-
-@Service
+@Component
 public class ValidateCurrency implements Validator {
     @Override
     public boolean isValid(Payment payment) {
