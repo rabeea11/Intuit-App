@@ -16,6 +16,12 @@ Below Request, creates a new Payment in DB :
 POST : localhost:8081/payments/payment 
 by proving JSON Payment in body request. 
 
+GET: localhost:8081/payments/paymentMethods 
+This API returns all the PaymentMethods used for all the previos payments. 
+
+localhost:8081/payments/payees
+This API returns all the Payees created previous payments.
+
 GET : localhost:8081/payments/allPayments 
 This api retrieves all the Payments from DB. 
 
