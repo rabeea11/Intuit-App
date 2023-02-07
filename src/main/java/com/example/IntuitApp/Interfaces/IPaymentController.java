@@ -5,5 +5,5 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
 
 public interface IPaymentController {
-    public ResponseEntity<String> sendMessage(@RequestBody Payment payment);
+    public ResponseEntity<String> sendMessage(@RequestBody Payment payment) throws Exception;
     }

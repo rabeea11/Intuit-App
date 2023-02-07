@@ -7,6 +7,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -21,7 +22,7 @@ public class PaymentController implements IPaymentController {
     PaymentService paymentService;
 
     @PostMapping(value="/payment")
-    public ResponseEntity<String> sendMessage(@RequestBody Payment payment) {
+    public ResponseEntity<String> sendMessage(@RequestBody Payment payment) throws Exception {
         log.info("Create new Payment request: {}" , payment);
         if(!paymentService.isValidPayment(payment)){
             log.error(Constants.WRONG_PAYMENT);
