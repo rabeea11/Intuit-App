@@ -42,15 +42,7 @@ import java.util.Map;
         public KafkaTemplate<String , Payment> kafkaTemplate() {
             return new KafkaTemplate<>(producerFactory());
         }
-
-//        @Bean
-//        public NewTopic topic() {
-//            return TopicBuilder
-//                    .name("t.food.order")
-//                    .partitions(1)
-//                    .replicas(1)
-//                    .build();
-//        }
+        
 
 
 }
