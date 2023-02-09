@@ -42,7 +42,7 @@ public class PaymentController implements IPaymentController {
         }else{
             log.error(Constants.INVALID_JSON);
         }
-        return new ResponseEntity<>(Constants.SUCCESSFULLY_SENT, HttpStatus.OK);
+        return new ResponseEntity<>(Constants.SUCCESSFULLY_SENT, HttpStatus.CREATED);
     }
 
     @GetMapping(value = "payment/{id}")

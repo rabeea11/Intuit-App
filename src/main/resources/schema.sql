@@ -1,3 +1,6 @@
+CREATE DATABASE IF NOT EXISTS `paymentdatabase`;
+USE `paymentdatabase`;
+
 CREATE table if not exists payments(
           paymentId SERIAL,
           amount bigint, currency VARCHAR(255),
