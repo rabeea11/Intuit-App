@@ -24,13 +24,26 @@ services:
       KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
       KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
   mysql:
-    container_name: mydatabase
-    image: mysql/mysql-server:8.0.23
+    container_name: mysql
+    platform: linux/amd64
+    image: "mysql:5.7"
     ports:
       - "3306:3306"
     environment:
       MYSQL_ROOT_PASSWORD: root
-      MYSQL_USER: root
-      MYSQL_DATABASE: paymentdto
+      MYSQL_DATABASE: paymentdatabase
       MYSQL_ROOT_HOST: "%"
     command: --lower_case_table_names=1
+#  intuit-app:
+#     container_name: intuit-app
+#     build:
+#       context: intuit-app
+#       dockerfile: Dockerfile1
+#     restart: always
+#     image: intuit-app:latest
+#     ports:
+#       - 8081:8081
+#     depends_on:
+#       - zookeeper
+#       - broker
+#       - mysql
