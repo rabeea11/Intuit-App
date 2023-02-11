@@ -86,11 +86,11 @@ public class PaymentService implements IPaymentService {
 
     @Override
     public ArrayList<Payee> getAllPayeesFromDb() {
-        ArrayList<Payee> methods = new ArrayList<>();
+        ArrayList<Payee> payees = new ArrayList<>();
         for(PaymentDTO payment: paymentDAO.findAll()){
-            methods.add(getPayeeById(payment.getPayeeid()));
+            payees.add(getPayeeById(payment.getPayeeid()));
         }
-        return methods;
+        return payees;
     }
 
     private Payee getPayeeById(String payeeid) {

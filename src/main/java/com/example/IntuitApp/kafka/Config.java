@@ -42,7 +42,6 @@ import java.util.Map;
         public KafkaTemplate<String , Payment> kafkaTemplate() {
             return new KafkaTemplate<>(producerFactory());
         }
-        
 
 
 }
