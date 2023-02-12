@@ -15,4 +15,5 @@ public class Payment {
     private String userId = String.valueOf(UUID.randomUUID());
     private String payeeId = String.valueOf(UUID.randomUUID());
     private String paymentMethodId = String.valueOf(UUID.randomUUID());
+    private String message = null;
 }

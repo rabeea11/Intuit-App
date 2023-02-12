@@ -22,19 +22,23 @@ public class PaymentController implements IPaymentController {
     PaymentService paymentService;
 
     @PostMapping(value="/payment")
-    public ResponseEntity<String> sendMessage(@RequestBody Payment payment) throws Exception {
+    public ResponseEntity<Payment> sendMessage(@RequestBody Payment payment) throws Exception {
         log.info("Create new Payment request: {}" , payment);
         if(!paymentService.isValidPayment(payment)){
             log.error(Constants.WRONG_PAYMENT);
-            return ResponseEntity.badRequest().body(Constants.WRONG_PAYMENT);
+            payment.setMessage(Constants.WRONG_PAYMENT);
+            return ResponseEntity.badRequest().body(payment);
         }
         if(!paymentService.isValidAmount(payment)){
             log.error(Constants.WRONG_AMOUNT);
-            return ResponseEntity.badRequest().body(Constants.WRONG_AMOUNT);
+            payment.setMessage(Constants.WRONG_AMOUNT);
+
+            return ResponseEntity.badRequest().body(payment);
         }
         if(!paymentService.isValidCurrency(payment)){
             log.error(Constants.WRONG_CURRENCY);
-            return ResponseEntity.badRequest().body(Constants.WRONG_CURRENCY);
+            payment.setMessage(Constants.WRONG_CURRENCY);
+            return ResponseEntity.badRequest().body(payment);
         }
 
         if(paymentService.sendPayment(payment)) {
@@ -42,7 +46,8 @@ public class PaymentController implements IPaymentController {
         }else{
             log.error(Constants.INVALID_JSON);
         }
-        return new ResponseEntity<>(Constants.SUCCESSFULLY_SENT, HttpStatus.CREATED);
+        payment.setMessage(Constants.SUCCESSFULLY_SENT);
+        return new ResponseEntity<>(payment, HttpStatus.CREATED);
     }
 
     @GetMapping(value = "payment/{id}")
