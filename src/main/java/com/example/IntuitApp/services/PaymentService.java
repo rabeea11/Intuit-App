@@ -72,33 +72,6 @@ public class PaymentService implements IPaymentService {
     }
 
     @Override
-    public ArrayList<PaymentMethod> getAllPaymentMethodsFromDb() {
-        ArrayList<PaymentMethod> methods = new ArrayList<>();
-        for(PaymentDTO payment: paymentDAO.findAll()){
-            methods.add(getPaymentMethodById(payment.getPaymentmethodid()));
-        }
-        return methods;
-    }
-
-    private PaymentMethod getPaymentMethodById(String methodId) {
-        return new PaymentMethod(methodId,"Visa Card");
-    }
-
-    @Override
-    public ArrayList<Payee> getAllPayeesFromDb() {
-        ArrayList<Payee> payees = new ArrayList<>();
-        for(PaymentDTO payment: paymentDAO.findAll()){
-            payees.add(getPayeeById(payment.getPayeeid()));
-        }
-        return payees;
-    }
-
-    private Payee getPayeeById(String payeeid) {
-        return new Payee(payeeid,"Rabia", "Ashqar", "rabia.ash@gmail.com");
-    }
-
-
-    @Override
     public void deletePaymentById(String id){
         log.info("Delete Payment with Id : {} ",id);
         paymentDAO.deleteById(id);

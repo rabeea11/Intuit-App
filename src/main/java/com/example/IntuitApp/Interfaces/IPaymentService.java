@@ -21,6 +21,5 @@ public interface IPaymentService {
     void deletePaymentById(String id);
     void deleteAll();
     ArrayList<PaymentDTO> getAllPaymentsFromDb();
-    ArrayList<Payee> getAllPayeesFromDb();
-    ArrayList<PaymentMethod> getAllPaymentMethodsFromDb();
+
     }

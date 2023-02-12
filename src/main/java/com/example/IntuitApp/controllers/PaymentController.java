@@ -58,15 +58,6 @@ public class PaymentController implements IPaymentController {
         }
     }
 
-    @GetMapping(value = "payees")
-    public ResponseEntity<ArrayList<Payee>> getAllPayees(){
-       return  new ResponseEntity<>(paymentService.getAllPayeesFromDb(),HttpStatus.OK);
-    }
-
-    @GetMapping(value = "paymentMethods")
-    public ResponseEntity<ArrayList<PaymentMethod>> getAllMethodsIds(){
-        return  new ResponseEntity<>(paymentService.getAllPaymentMethodsFromDb(),HttpStatus.OK);
-    }
 
     @GetMapping(value = "allPayments")
     public ResponseEntity<ArrayList<PaymentDTO>> getAllPayments(){
