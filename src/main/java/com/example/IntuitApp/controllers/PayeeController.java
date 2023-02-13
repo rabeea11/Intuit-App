@@ -21,6 +21,10 @@ public class PayeeController {
 
     @GetMapping(value = "payees")
     public ResponseEntity<ArrayList<Payee>> getAllPayees(){
-        return  new ResponseEntity<>(payeeService.getAllPayeesFromDb(), HttpStatus.OK);
+        ArrayList<Payee> payees = payeeService.getAllPayeesFromDb();
+        if(payees.size() > 0)
+            return  new ResponseEntity<>(payees, HttpStatus.OK);
+        else
+            return ResponseEntity.noContent().build();
     }
 }

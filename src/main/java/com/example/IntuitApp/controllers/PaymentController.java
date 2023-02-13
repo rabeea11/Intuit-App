@@ -65,7 +65,10 @@ public class PaymentController implements IPaymentController {
 
     @GetMapping(value = "allPayments")
     public ResponseEntity<ArrayList<PaymentDTO>> getAllPayments(){
-        return new ResponseEntity<>(paymentService.getAllPaymentsFromDb(),HttpStatus.OK);
+        ArrayList<PaymentDTO> payments = paymentService.getAllPaymentsFromDb();
+        if(payments.size()==0)
+          return ResponseEntity.noContent().build();
+        return new ResponseEntity<>(payments,HttpStatus.OK);
     }
 
     @DeleteMapping(value = "deleteAllPayments")

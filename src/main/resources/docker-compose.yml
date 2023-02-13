@@ -34,16 +34,3 @@ services:
       MYSQL_DATABASE: paymentdatabase
       MYSQL_ROOT_HOST: "%"
     command: --lower_case_table_names=1
-#  intuit-app:
-#     container_name: intuit-app
-#     build:
-#       context: intuit-app
-#       dockerfile: Dockerfile1
-#     restart: always
-#     image: intuit-app:latest
-#     ports:
-#       - 8081:8081
-#     depends_on:
-#       - zookeeper
-#       - broker
-#       - mysql
