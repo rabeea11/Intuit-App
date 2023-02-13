@@ -11,7 +11,6 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
-import java.util.Optional;
 
 @Slf4j
 @RestController
@@ -51,9 +50,9 @@ public class PaymentController implements IPaymentController {
     }
 
     @GetMapping(value = "payment/{id}")
-    public ResponseEntity<Optional<PaymentDTO>> getPaymentById(@PathVariable String id){
+    public ResponseEntity<PaymentDTO> getPaymentById(@PathVariable String id){
         if (paymentService.getPaymentById(id)!= null) {
-            Optional<PaymentDTO> paymentDTO=paymentService.getPaymentById(id);
+            PaymentDTO paymentDTO=paymentService.getPaymentById(id);
             log.info("Get Payment from DB: {}",paymentDTO);
             return new ResponseEntity<>(paymentDTO, HttpStatus.OK);
         }

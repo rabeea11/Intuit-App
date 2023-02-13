@@ -8,8 +8,13 @@ import org.springframework.stereotype.Component;
 public class ValidateAmount implements Validator {
     @Override
     public boolean isValid(Payment payment) {
-        if(payment.getAmount() <= 0)
+        try {
+            if(payment.getAmount() <= 0)
+                 return false;
+        }
+        catch (Exception ex){
             return false;
+        }
         return true;
     }
 }

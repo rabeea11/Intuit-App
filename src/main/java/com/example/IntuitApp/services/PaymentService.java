@@ -16,8 +16,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
 
 @Service
 @Slf4j
@@ -43,27 +41,24 @@ public class PaymentService implements IPaymentService {
         return true;
     }
 
-    @Override
     public boolean isValidPayment(Payment payment) {
         return validatePayment.isValid(payment);
     }
 
-    @Override
     public boolean isValidCurrency(Payment payment) {
         return validateCurrency.isValid(payment);
     }
 
-    @Override
     public boolean isValidAmount(Payment payment) {
         return validateAmount.isValid(payment);
     }
 
     @Override
-    public Optional<PaymentDTO> getPaymentById(String id) {
-        if (paymentDAO.existsById(id))
-            return paymentDAO.findById(id);
-
-        return null;
+    public PaymentDTO getPaymentById(String id) {
+        if(paymentDAO.findById(id).isPresent())
+            return paymentDAO.findById(id).get();
+        else
+            return new PaymentDTO();
     }
 
     @Override
