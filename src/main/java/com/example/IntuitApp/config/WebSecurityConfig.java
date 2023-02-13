@@ -1,4 +1,4 @@
-package com.example.IntuitApp.valdiators;
+package com.example.IntuitApp.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
