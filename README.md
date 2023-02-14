@@ -11,7 +11,10 @@ To run the app, first need to run docker ** docker-compose up -d ** to run build
 Then need to run both apps (Intuit-App, Risk-engine) as Spring boot projects.
 
 As it's a web based app, I created rest API urls, to manage the Payments system.
-The Application is Secured by Spring Security, so for each API rest call, need to provide UserName and Password as Basic Authentication,
+The Application is Secured by Spring Security,
+**spring.security.user.name = rabia
+**spring.security.user.password = rabia
+so for each API rest call, need to provide UserName and Password as Basic Authentication,
 for example, to create a new Payment: 
 
 **curl --location --request POST 'localhost:8081/payments/payment' \
