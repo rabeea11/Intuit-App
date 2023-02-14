@@ -58,7 +58,7 @@ public class PaymentService implements IPaymentService {
         if(paymentDAO.findById(id).isPresent())
             return paymentDAO.findById(id).get();
         else
-            return new PaymentDTO();
+            return null;
     }
 
     @Override

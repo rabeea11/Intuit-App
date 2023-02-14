@@ -58,7 +58,7 @@ public class PaymentController implements IPaymentController {
         }
         else {
             log.error("Payment with the provided ID  {} Does not Exist in DB", id);
-            return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+            return ResponseEntity.noContent().build();
         }
     }
 
@@ -67,7 +67,7 @@ public class PaymentController implements IPaymentController {
     public ResponseEntity<ArrayList<PaymentDTO>> getAllPayments(){
         ArrayList<PaymentDTO> payments = paymentService.getAllPaymentsFromDb();
         if(payments.size()==0)
-          return ResponseEntity.noContent().build();
+            return ResponseEntity.noContent().build();
         return new ResponseEntity<>(payments,HttpStatus.OK);
     }
 
