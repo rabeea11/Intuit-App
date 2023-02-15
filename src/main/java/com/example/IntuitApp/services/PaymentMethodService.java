@@ -2,6 +2,7 @@ package com.example.IntuitApp.services;
 
 import com.example.IntuitApp.Interfaces.IPaymentDAO;
 import com.example.IntuitApp.Interfaces.IPaymentMethodService;
+import com.example.IntuitApp.model.Constants;
 import com.example.IntuitApp.model.PaymentDTO;
 import com.example.IntuitApp.model.PaymentMethod;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +26,7 @@ public class PaymentMethodService implements IPaymentMethodService {
     }
 
     private PaymentMethod getPaymentMethodById(String methodId) {
-        return new PaymentMethod(methodId,"Visa Card");
+        return new PaymentMethod(methodId, Constants.VISA_CARD);
     }
 
 }

@@ -2,6 +2,7 @@ package com.example.IntuitApp.services;
 
 import com.example.IntuitApp.Interfaces.IPayeeService;
 import com.example.IntuitApp.Interfaces.IPaymentDAO;
+import com.example.IntuitApp.model.Constants;
 import com.example.IntuitApp.model.Payee;
 import com.example.IntuitApp.model.PaymentDTO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +26,7 @@ public class PayeeService implements IPayeeService {
     }
 
     private Payee getPayeeById(String payeeid) {
-        return new Payee(payeeid,"Rabia", "Ashqar", "rabia.ash@gmail.com");
+        return new Payee(payeeid, Constants.FIRST_NAME, Constants.LAST_NAME, Constants.MAIL);
     }
 
 }
